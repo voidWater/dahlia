@@ -14,7 +14,7 @@ export default {
     }
   },
   created:function(){
-		this.$router.push({path:'/login'})
+		this.$router.push({path:'/mainOrigin'})
   },
   methods:{
   }

@@ -1,6 +1,6 @@
 <template>
-  <div class="menu" v-bind:class="{'menu2':mouseenterFlag}" @mouseenter="mouseenterFlag=!mouseenterFlag" @mouseleave="mouseenterFlag=!mouseenterFlag">
-		<div class="title"><div class="user-bar" @click="goToLogin"><el-avatar :size="50" :src="circleUrl"></el-avatar></div></div>
+  <div class="menu" v-bind:class="{'menu1':$store.state.view.shrinkMenu,'menu2':mouseenterFlag}" @mouseenter="mouseenterFlag=!mouseenterFlag" @mouseleave="mouseenterFlag=!mouseenterFlag">
+		<div class="title"><div v-show="!$store.state.view.shrinkMenu||mouseenterFlag" class="user-bar" @click="goToLogin"><el-avatar :size="50" :src="circleUrl"></el-avatar></div></div>
 		<el-scrollbar style="height: 100%;">
 		<div v-if="!$store.state.view.shrinkMenu||mouseenterFlag" style="margin-top: 20px;">
 			<div v-for="(item,index) in $store.state.view.menuItems">
@@ -20,8 +20,8 @@
 				</el-collapse-transition>
 			</div>
 		</div>	
-		<div v-else>
-			<div v-for="(item,index) in $store.state.view.menuItems">
+		<div v-else  >
+			<div v-for="(item,index) in $store.state.view.menuItems" >
 				<a href="#">
 					<div class="menu-itme-s" >
 						<i :class="item.icon">&nbsp;&nbsp;</i>
@@ -104,6 +104,11 @@ export default {
 	position: absolute;top: 0;bottom: 0;left: 0;width: 200px;
 	overflow:-Scroll;overflow-y:hidden
 }
+.menu1{
+	background-color: #192a5e;text-align: left;
+	position: absolute;top: 0;bottom: 0;left: 0;width: 50px;
+	overflow:-Scroll;overflow-y:hidden
+}
 .menu2{
 	background-color: #192a5e;text-align: left;
 	position: absolute;top: 0;bottom: 0;left: 0;width: 200px;z-index:999999;
@@ -127,6 +132,7 @@ export default {
 	line-height: 36px;
 	font-size: 14px;
 	padding: 5px 0 5px 20px;
+	
 }
 .menu-itme{
 	color:#cbcbcb;

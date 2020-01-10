@@ -27,6 +27,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+			ezuikit: path.resolve(__dirname, './dist/ezuikit.js'),
     }
   },
   module: {

@@ -46,6 +46,22 @@
 </script>
 
 <style scoped>
+@-webkit-keyframes rotation{
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(-360deg);}
+}
+
+.an{
+	position: fixed;
+	top:200px;
+	width: 250px;
+    -webkit-transform: rotate(360deg);
+    animation: rotation 1s linear infinite;
+    -moz-animation: rotation 1s linear infinite;
+    -webkit-animation: rotation 1s linear infinite;
+    -o-animation: rotation 1s linear infinite;
+}
+
 .container{
 /* 	display: flex;justify-content:space-around;align-items:center;height: 800px; */
 }

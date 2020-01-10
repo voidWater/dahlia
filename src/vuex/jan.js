@@ -20,14 +20,15 @@ export default {
 		day:0,
 		hour:0,
 		min:0,
-		sec:0
+		sec:0,
+    proxy:"/love"
 	},
 	getters:{
-       
+
     },
 	mutations:{   //修改状态，同步
 		setState(state,payload){
-			
+
 		}
 	},
 	actions:{    //修改状态，异步

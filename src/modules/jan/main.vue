@@ -37,7 +37,7 @@
 							</el-col>
 							<el-col class="line" :span="2">-</el-col> -->
 							<el-col :span="11">
-							  <el-date-picker type="date" placeholder="选择结束日期" v-model="$store.state.jan.date2" style="width: 100%;" 
+							  <el-date-picker type="date" placeholder="选择结束日期" v-model="$store.state.jan.date2" style="width: 100%;"
 							  value-format="yyyy-MM-dd" @change="endDateChange"></el-date-picker>
 							</el-col>
 						  </el-form-item>
@@ -51,7 +51,7 @@
 							</el-col>
 						  </el-form-item>
 						  <el-form-item label="课程介绍">
-							  <el-input type="textarea"  v-model="$store.state.jan.des"></el-input>	
+							  <el-input type="textarea"  v-model="$store.state.jan.des"></el-input>
 						  </el-form-item>
 						  <el-form-item label="活动说明">
 							  <el-input v-for="ex in $store.state.jan.expl" v-model="ex.p"></el-input>
@@ -59,21 +59,27 @@
 							  <el-button @click="subExpl">-</el-button>
 						  </el-form-item>
 						  <el-form-item label="提示">
-						  	  <el-input type="textarea"  v-model="$store.state.jan.tip"></el-input>	
+						  	  <el-input type="textarea"  v-model="$store.state.jan.tip"></el-input>
 						  </el-form-item>
 						  <el-form-item>
-							<el-button v-if="flag" type="primary" @click="onSubmit">创建</el-button>
-							<el-button v-else type="success" @click="onSubmit">修改</el-button>
+							<el-button v-if="flag" type="primary" @click="onSubmit" :disabled="bdis">创建</el-button>
+							<el-button v-else type="success" @click="onSubmit" :disabled="bdis">修改</el-button>
 						  </el-form-item>
 						</el-form>
 					</el-tab-pane>
 				  </el-tabs>
-				  
+
 			  </div>
 		  </el-col>
 		  <el-col :span="12">
 			  <div class="right">
-				  <router-view/>
+
+          <div style="width: 450px;height: 700px;overflow: auto;border-radius: 10px;border:10px solid #f16f6f">
+            <el-scrollbar style="height: 100%;">
+            <router-view/>
+            </el-scrollbar>
+          </div>
+
 			  </div>
 		  </el-col>
 		</el-row>
@@ -87,7 +93,9 @@
 		return{
 			activeName:"first",
 			hdList:"123123",
-			flag:false
+			flag:false,
+      bdis:true,
+      proxy:this.$store.state.jan.proxy
 		}
 		},
 		created:function(){
@@ -98,7 +106,7 @@
 		methods:{
 			init:function(){
 				this.$axios
-				  .get('/index/all')
+				  .get(this.proxy+'/musicStudio/all')
 				  .then(response => {
 					this.hdList=response.data;
 				  })
@@ -112,8 +120,9 @@
 				for(let i = 0;i<this.$store.state.jan.expl.length;i++){
 					str+=this.$store.state.jan.expl[i].p+(i==this.$store.state.jan.expl.length-1?"":"%%")
 				}
+				this.bdis=false;
 				this.$axios
-				  .post('/index/save',{
+				  .post(this.proxy+'/musicStudio/save',{
 					  id:this.$store.state.jan.id,
 					  name:this.$store.state.jan.name,
 					  title:this.$store.state.jan.title,
@@ -130,7 +139,7 @@
 						this.activeName="first"
 						this.$message({type:"success",message:"操作成功"});
 						this.$axios
-						  .get('/index/all')
+						  .get(this.proxy+'/musicStudio/all')
 						  .then(response => {
 							this.hdList=response.data;
 						  })
@@ -140,11 +149,12 @@
 					}else{
 						this.$message("操作失败！");
 					}
-					
+          that.bdis=false;
 				  })
 				  .catch(error => {
 					console.log(error)
 					this.$message("失败！");
+          that.bdis=false;
 				  })
 			},
 			selectedHd:function(val){
@@ -200,7 +210,7 @@
 			},
 			delHd:function(val){
 				this.$axios
-				  .get('/index/del?id='+val.id)
+				  .delete(this.proxy+'/musicStudio/del?id='+val.id)
 				  .then(response => {
 					if(response.data==1){
 						this.init();
@@ -211,7 +221,7 @@
 				  })
 			},
 			createLine:function(val){
-				this.$alert('http://fullmusic.club/index.html#/cx/'+val.id,'复制链接，到浏览器中访问' , {
+				this.$alert('https://fullmusic.club/love/ac/get?id='+val.id,'复制链接，到浏览器中访问' , {
 				  confirmButtonText: '确定'
 				});
 			},
@@ -225,10 +235,10 @@
 				this.$store.state.jan.expl.pop();
 			},
 			countdown:function () {//倒计时
-			    var deadline= new Date(this.$store.state.jan.date2)
+        var deadline= new Date(this.$store.state.jan.date2)
 				var now= new Date()
 				var nowNum = deadline-now;
-				this.$store.state.jan.day=parseInt(nowNum/(60*60*24*1000)) 
+				this.$store.state.jan.day=parseInt(nowNum/(60*60*24*1000))
 				this.$store.state.jan.hour=parseInt((deadline-now)%(60*60*24*1000)/(60*60*1000))
 				this.$store.state.jan.min=parseInt((deadline-now)%(60*60*24*1000)%(60*60*1000)/(60*1000))
 				this.$store.state.jan.sec=parseInt((deadline-now)%(60*60*24*1000)%(60*60*1000)%(60*1000)/1000)

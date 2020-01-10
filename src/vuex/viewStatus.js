@@ -3,45 +3,19 @@ export default {
     state:{        //数据状态
 		name:"origin",
 		menuItems:[   {name:"主页",code:"main",path:"/mainOrigin/index",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-					  {name:"模板",code:"studio",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[
-						{name:"t1",code:"t1",path:"/mainOrigin/t1",active:false,invalid:true,childs:[]},
-						{name:"t2",code:"t2",path:"/mainOrigin/t2",active:false,invalid:true,childs:[]}
-						]},
-					  {name:"AI智能",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-					  {name:"5G应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-					  {name:"机器人应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-					  {name:"人脸识别",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-					  {name:"6G",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-					  {name:"网络爬虫",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[
-						  {name:"AI智能",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"5G应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"机器人应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"人脸识别",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"6G",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"网络爬虫",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"AI智能",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"5G应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"机器人应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"人脸识别",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"6G",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"网络爬虫",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"AI智能",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"5G应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"机器人应用",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"人脸识别",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]},
-						  {name:"6G",code:"",path:"",active:false,invalid:true,icon:"fa fa-align-left",childs:[]},
-						  {name:"网络爬虫",code:"",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[]}
-					  ]}
+					  {name:"简乐工作室",code:"studio",path:"",active:false,invalid:true,icon:"fa fa-file-text",childs:[
+						{name:"编辑活动",code:"editCx",path:"/mainOrigin/janMain",active:false,invalid:true,childs:[]}
+						]}
 				   ],
 		tabs:[],
 		shrinkMenu:false
 	},
 	getters:{
-       
+
     },
 	mutations:{   //修改状态，同步
 		setState(state,payload){
-			
+
 		}
 	},
 	actions:{    //修改状态，异步

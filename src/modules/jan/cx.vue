@@ -70,7 +70,7 @@
 						<img class="ls_img" src="../../assets/jan/xs_2.jpg">
 					</div>
 				</div>
-		</div>	
+		</div>
 		<div class="bar"></div>
 		 <div class="datail">
 			<div class="name"><span >简乐艺术中心（金盘店）</span></div>
@@ -84,8 +84,8 @@
 			<div class="info"><b><i class="fa fa-map-signs"></i></b>&nbsp海南省海口市美兰区美祥路晋江花园</div>
 			<div id="allmap2"></div>
 		 </div>
-		
-		<div class="shade" v-show="popupVisible" @click="upPopup"></div> 
+
+		<div class="shade" v-show="popupVisible" @click="upPopup"></div>
 		<div class="qgp" v-show="popupVisible">
 			<div>
 				<img class="img" src="../../assets/jan/ls.jpg">
@@ -107,12 +107,13 @@
 				hour:0,
 				min:0,
 				sec:0,
-				popupVisible:false
+				popupVisible:false,
+        proxy:this.$store.state.jan.proxy
 			}
 		},
 		created:function(){
 			this.$axios
-			  .get('/index/get?id='+this.$route.params.id)
+			  .get(this.proxy+'/musicStudio/get?id='+this.$route.params.id)
 			  .then(response => {
 				console.log(response.data);
 				this.$store.state.jan.id=response.data.id,
@@ -136,7 +137,7 @@
 				console.log(error)
 				this.$message("失败！");
 			  })
-			  
+
 		},
 		mounted() {
 			var map = new BMap.Map("allmap1");
@@ -164,7 +165,7 @@
 			map2.addControl(top_right_navigation1);
 			var marker1 = new BMap.Marker(new BMap.Point(110.379451, 20.028194)); // 创建点
 			map2.addOverlay(marker1);    //增加点
-			 
+
 			//map2.addEventListener("click", showInfo);
 			//map.addEventListener("tilesloaded",function(){alert("地图加载完毕");});
 		},
@@ -227,7 +228,7 @@
 }
 .datail{
 	text-align:left;padding:0 10px;margin-bottom:70px;
-} 
+}
 .datail .name{
 	margin-bottom:15px;
 }

@@ -7,10 +7,18 @@ import index from '@/modules/template-origin/index'
 import login from '@/modules/template-origin/login'
 import t1 from '@/modules/template-origin/template/t1'
 import t2 from '@/modules/template-origin/template/t2'
+import t3 from '@/modules/template-origin/template/t3'
 let routes = [
 		{
 			path: '/login',
 			component: login
+		},
+		{
+			path: '/cx',
+			component: janCx,
+      meta: {
+        title: '促销活动'
+      }
 		},
 		{
 		    path: '/mainOrigin',
@@ -43,6 +51,10 @@ let routes = [
 					{
 						path: 't2',
 						component: t2
+					},
+					{
+						path: 't3',
+						component: t3
 					}
 				]
 		},
@@ -67,5 +79,5 @@ let routes = [
 		    }
 		}
 	];
- 
+
 export default routes;
